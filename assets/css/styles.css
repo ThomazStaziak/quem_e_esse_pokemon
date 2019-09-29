@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "Pokemon Solid";
+  src: url("../fonts/Pokemon Solid.ttf");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+html,
+body,
+div {
+  height: 100%;
+}
+
+body {
+  background-image: url("https://external-preview.redd.it/e5zoQw-hgw-LCjdhC_4G8IAcHxex5pzda_BD_FPTcBY.png?auto=webp&s=c0b96b5ec20010a15864b8a0c9b202c119e52fe8");
+  background-size: 73% 100%;
+  background-position: left;
+
+  font-family: "Pokemon Solid", sans-serif;
+  color: #ffcc36;
+  text-shadow: 2px 2px 0 #2f6db5, 2px -2px 0 #2f6db5, -2px 2px 0 #2f6db5,
+    -2px -2px 0 #2f6db5, 2px 0px 0 #2f6db5, 0px 2px 0 #2f6db5,
+    -2px 0px 0 #2f6db5, 0px -2px 0 #2f6db5;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div {
+  background-color: #f9f9f9;
+  border-left: 2px #2f6db5 solid;
+  width: 35%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div > h1 {
+  padding: 15px;
+  text-align: center;
+  margin: 10% 0;
+}
+
+div > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+div > form > input {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border: 2px #2f6db5 solid;
+  border-radius: 15px;
+  text-align: center;
+}
+
+div > form > p {
+  font-size: 25px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+div > p {
+  margin-bottom: 10%;
+  font-size: 35px;
+}
+
+img#pokemon {
+  width: 40%;
+  height: 80%;
+  filter: brightness(0);
+  pointer-events: none;
+}
