@@ -1,38 +1,33 @@
 const form = document.querySelector("form");
 const input = document.querySelector("input");
-const score = document.querySelector("#score");
-const pokemonImage = document.querySelector("#pokemon");
+const score = document.querySelector("span");
+const img = document.querySelector("img");
 const div = document.querySelector("div");
 
-const showPokemon = () => {
-  div.style.backgroundColor = "#f9f9f9";
+let scoreHolder = 0;
 
-  fetch(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 150)}/`)
+const showPokemon = () => {
+  fetch(
+    `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 149 + 1)}`
+  )
     .then(response => response.json())
     .then(pokemon => {
-      pokemonImage.setAttribute("src", pokemon.sprites.front_default);
-      localStorage.setItem("rightAnswer", pokemon.name);
+      const { sprites, name } = pokemon;
+      setImage(sprites.front_default, img);
+      localStorage.setItem("rightAnswer", name);
     });
 };
 
 const showScore = () => {
-  if (localStorage.getItem("score") == null) localStorage.setItem("score", "0");
-
-  score.innerHTML = localStorage.getItem("score");
+  return (score.innerHTML = scoreHolder);
 };
 
 const addPoint = () => {
-  localStorage.setItem(
-    "score",
-    String(parseInt(localStorage.getItem("score")) + 100)
-  );
+  return (scoreHolder += 100);
 };
 
 const removePoint = () => {
-  localStorage.setItem(
-    "score",
-    String(parseInt(localStorage.getItem("score")) - 100)
-  );
+  return (scoreHolder -= 100);
 };
 
 const checkAnswer = evt => {
@@ -42,25 +37,41 @@ const checkAnswer = evt => {
 
   if (input.value.toLowerCase().trim() == localStorage.getItem("rightAnswer")) {
     addPoint();
-    div.style.backgroundColor = "#30af2d";
+    setBackgroundColor("#30af2d", div);
   } else {
     removePoint();
-    div.style.backgroundColor = "#d44343";
+    setBackgroundColor("#d44343", div);
   }
 
   input.focus();
   input.value = "";
-  pokemonImage.style.filter = "none";
+  toggleFilter(false, img);
 
   setTimeout(() => {
-    pokemonImage.style.filter = "brightness(0)";
+    toggleFilter(true, img);
+    setBackgroundColor("#f9f9f9", div);
     showPokemon();
-  }, 500);
+  }, 1000);
 
   showScore();
 };
 
-form.onsubmit = checkAnswer;
+const toggleFilter = (active, img) => {
+  if (!active) return (img.style.filter = "none");
+  return (img.style.filter = "brightness(0)");
+};
 
-showPokemon();
-showScore();
+const setBackgroundColor = (color, elem) => {
+  return (elem.style.backgroundColor = color);
+};
+
+const setImage = (src, img) => {
+  img.setAttribute("src", src);
+};
+
+window.onload = () => {
+  input.focus();
+  showPokemon();
+  showScore();
+};
+form.onsubmit = checkAnswer;
