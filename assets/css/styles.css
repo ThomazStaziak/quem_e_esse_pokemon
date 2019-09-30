@@ -77,9 +77,42 @@ div > p {
   font-size: 35px;
 }
 
-img#pokemon {
+img {
   width: 40%;
   height: 80%;
   filter: brightness(0);
   pointer-events: none;
+}
+
+@media (max-width: 550px) {
+  body {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+    background-color: #e7ecf1;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  div {
+    border: none;
+    border-top: 2px solid #2f6db5;
+    width: 100%;
+  }
+
+  div > h1 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  div > form > p {
+    font-size: 20px;
+  }
+
+  div > p {
+    font-size: 25px;
+  }
 }
