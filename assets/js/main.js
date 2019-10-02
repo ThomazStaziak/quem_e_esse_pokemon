@@ -1,6 +1,7 @@
 const form = document.querySelector("form");
 const input = document.querySelector("input");
-const score = document.querySelector("span");
+const score = document.querySelector("span#score");
+const pokemonName = document.querySelector("span#pokemonName");
 const img = document.querySelector("img");
 const div = document.querySelector("div");
 
@@ -46,8 +47,10 @@ const checkAnswer = evt => {
   input.focus();
   input.value = "";
   toggleFilter(false, img);
+  pokemonName.innerHTML = localStorage.getItem("rightAnswer");
 
   setTimeout(() => {
+    pokemonName.innerHTML = "";
     toggleFilter(true, img);
     setBackgroundColor("#f9f9f9", div);
     showPokemon();
